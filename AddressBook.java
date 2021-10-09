@@ -1,9 +1,11 @@
 package com.company1.Day9AddressBook;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class AddressBook {
-    static ContactDetails person = new ContactDetails();
-    public static void addNewContact() {
+    ArrayList arrayList = new ArrayList();
+    ContactDetails person = new ContactDetails();
+    public void addNewContact() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter First Name : ");
         String firstName = scanner.next();
@@ -22,22 +24,44 @@ public class AddressBook {
         System.out.println("Enter EmailId : ");
         String emailId = scanner.next();
         person = new ContactDetails(firstName, lastName, address, city, state, zipCode, mobileNumber, emailId);
+        arrayList.add(person);
         printContact();
     }
 
-    public static void printContact() {
-        System.out.println("Contact Details");
-        System.out.println("Name         : " + person.getFirstName() + " " + person.getLastName() + "\n"
-                + "Address      : " + person.getAddress()   + "\n"
-                + "City         : " + person.getCity()      + "\n"
-                + "State        : " + person.getState()     + "\n"
-                + "ZipCode      : " + person.getZipCode()   + "\n"
-                + "MobileNumber : " + person.getMobileNumber()  + "\n"
-                + "EmailId      : " + person.getEmailId()   + "\n");
+    public void printContact() {
+        for(int i=0;i<arrayList.size();i++) {
+            System.out.println("Contact Details");
+            System.out.println("Name         : " + person.getFirstName() + " " + person.getLastName() + "\n"
+                    + "Address      : " + person.getAddress()   + "\n"
+                    + "City         : " + person.getCity()      + "\n"
+                    + "State        : " + person.getState()     + "\n"
+                    + "ZipCode      : " + person.getZipCode()   + "\n"
+                    + "MobileNumber : " + person.getMobileNumber()  + "\n"
+                    + "EmailId      : " + person.getEmailId()   + "\n");
+
+        }
+
     }
     public static void main(String[] args) {
         System.out.println("Welcome to Address Book Program");
-        addNewContact();
+        Scanner userInput = new Scanner(System.in);
+        AddressBook addressBook = new AddressBook();
+        while(true){
+            System.out.println("Enter 1 to add new contact \nEnter 2 to Exit");
+            int getUserInput = userInput.nextInt();
+            switch (getUserInput){
+                case 1 :
+                    addressBook.addNewContact();
+                    break;
+                case 2 :
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid user input");
+                    continue;
+            }
+        }
+
 
 
     }
