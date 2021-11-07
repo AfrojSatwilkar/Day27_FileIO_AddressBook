@@ -5,7 +5,7 @@ import java.util.*;
 public class AddressBookMain {
 
     public void choose() {
-        MultipleAddressBooks obj = new MultipleAddressBooks();
+        MultipleAddressBooks multipleAddressBooks = new MultipleAddressBooks();
         while (true) {
             System.out.println("Enter \n 1. To add The new AddressBook\n 2. To add contact in AddressBook\n " +
                     "3. To edit the contact in AddressBook\n 4. To delete the contact in AddressBook\n 5. To delete the AddressBook\n " +
@@ -14,27 +14,27 @@ public class AddressBookMain {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    obj.addAddressBook();
+                    multipleAddressBooks.addAddressBook();
                     break;
                 case 2:
-                    obj.addContact();
+                    multipleAddressBooks.addContact();
                     break;
                 case 3:
-                    obj.editContactInBook();
+                    multipleAddressBooks.editContactInBook();
                     break;
                 case 4:
-                    obj.deleteContactInBook();
+                    multipleAddressBooks.deleteContactInBook();
                     break;
                 case 5:
-                    obj.deleteAddressBook();
+                    multipleAddressBooks.deleteAddressBook();
                     break;
                 case 6:
-                    obj.printBook();
+                    multipleAddressBooks.printBook();
                     break;
                 case 7:
-                    obj.printContactsInBook();
+                    multipleAddressBooks.printContactsInBook();
                     break;
-                case 0:
+                case 8:
                     System.exit(0);
                     break;
                 default:

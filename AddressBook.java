@@ -10,15 +10,22 @@ public class AddressBook {
         System.out.println("Enter the number of contacts you want to enter");
         int number = scanner.nextInt();
         for (int i = 0; i < number; i++) {
-            System.out.println("Enter the contact details of person ");
-            writeContact();
+
+            //checking the duplicate contact by contact name
+            System.out.println("Enter First Name : ");
+            String firstName = scanner.next();
+            if (firstName.equals(person.getFirstName())) {
+                System.out.println("The entered person is already exist.");
+            } else {
+                writeContact(firstName);
+                System.out.println("contact added Successfully");
+            }
         }
     }
 
-    public void writeContact() {
+    public void writeContact(String firstName) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter First Name : ");
-        String firstName = scanner.next();
+
         System.out.println("Enter Last Name : ");
         String lastName = scanner.next();
         System.out.println("Enter Address : ");
@@ -46,7 +53,7 @@ public class AddressBook {
             String name = contactDetailsList.get(i).getFirstName();
             if (name.equalsIgnoreCase(editName)) {
                 contactDetailsList.remove(person);
-                writeContact();
+                writeContact(editName);
                 edited = true;
                 break;
             }

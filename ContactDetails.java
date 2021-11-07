@@ -1,5 +1,7 @@
 package com.company1.Day9AddressBook;
 
+import java.util.Objects;
+
 public class ContactDetails {
     private String firstName;
     private String lastName;
@@ -88,6 +90,19 @@ public class ContactDetails {
 
     public void setEmailId(String emailId) {
         this.emailId = emailId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ContactDetails that = (ContactDetails) o;
+        return firstName.equals(that.firstName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName);
     }
 
     @Override
