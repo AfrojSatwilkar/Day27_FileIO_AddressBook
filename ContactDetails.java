@@ -1,6 +1,7 @@
 package com.company1.Day9AddressBook;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ContactDetails {
     private static Scanner scan = new Scanner(System.in);
@@ -162,7 +163,7 @@ public class ContactDetails {
         System.out.println("Enter Name of City or State to get Contact List : ");
         String nameCityState = scan.next();
         try {
-            System.out.println("\nContact list of persons across '"+nameCityState+"' is");
+            System.out.print("\nContact list of persons across '"+nameCityState+"' is");
             personList.stream().filter(contactList -> contactList.getCity().equals(nameCityState)||contactList.getState().equals(nameCityState)).forEach(contactList -> {
                 System.out.println(contactList.getFirstName()+" "+contactList.getLastName());
             });
@@ -192,5 +193,12 @@ public class ContactDetails {
             wrapper.count++;
         });
         System.out.println("Number of contact persons in "+nameCityState+" is : "+wrapper.count);
+    }
+    // To sort the entries in the address book alphabetically by Person's name
+    public void sortByName() {
+        addressBook.keySet().forEach((String name) -> {
+            addressBook.get(name).stream().sorted(Comparator.comparing(AddressBook::getFirstName))
+                    .collect(Collectors.toList()).forEach(person -> System.out.println(person.toString()));
+        });
     }
 }
