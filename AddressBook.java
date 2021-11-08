@@ -1,6 +1,4 @@
 package com.company1.Day9AddressBook;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class AddressBook {
     // variable declartion
