@@ -1,55 +1,76 @@
-package com.company1.Day9AddressBook;
+package com.company1.Day27_EmployeePayrollService;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Scanner;
 
 public class AddressBookMain {
-    private static Scanner scan = new Scanner(System.in);
 
-    public static void main(String[] args) {
-        // Displaying Welcome Message
-        System.out.println("Welcome to Address Book Program");
-        // Creating an object of Class AddressBook
-        ContactDetails addressBook = new ContactDetails();
-        // Calling methods from class AddressBookRunner
-        boolean choice = true;
-        while (choice) {
-            System.out.println("\nChoose the option:\nPress '1' for Add Contact Details\nPress '2' for Edit Contact Deatils"
-                    + "\nPress '3' for Delete Contact Details\nPress '4' for Show Contact Details\nPress '5' for Contact list by City State"
-                    + "\nPress '6' for Show Contact list of Persons\nPress '7' for Count of contacts by City State\nPress '8' for Sort Contacts By Name"
-                    + "\nPress '0' for Exit");
-            int option = scan.nextInt();
-            switch (option) {
-                case 0:
-                    choice = false;
-                    System.out.println("Exited out of AddressBook");
-                    break;
+    public void choose() {
+        MultipleAddressBooks obj1 = new MultipleAddressBooks();
+        AddressBook obj2 = new AddressBook();
+        while (true) {
+            System.out.println("Enter \n 1. To add The new AddressBook\n 2. To do AddressBook functions\n 3. To delete the AddressBook\n " +
+                    "4. To Print the AddressBook\n 5. To Print the contacts in AddressBook\n 6. To book options\n 0. to exit");
+            Scanner scanner = new Scanner(System.in);
+            int choice = scanner.nextInt();
+            switch (choice) {
                 case 1:
-                    addressBook.addDetails();
+                    obj1.addAddressBook();
                     break;
                 case 2:
-                    addressBook.editDetails();
+                    obj1.addressBookFunctions();
                     break;
                 case 3:
-                    addressBook.deleteDetails();
+                    obj1.deleteBook();
                     break;
                 case 4:
-                    addressBook.showDetails();
+                    obj1.printBook();
                     break;
                 case 5:
-                    addressBook.contactBycity();
+                    obj1.printContactsInBook();
                     break;
                 case 6:
-                    addressBook.displayContacts();
+                    obj2.viewByOptions();
                     break;
-                case 7:
-                    addressBook.contactsCount();
-                    break;
-                case 8:
-                    addressBook.sorting();
+                case 0:
+                    System.exit(0);
                     break;
                 default:
-                    System.out.println("Please enter valid input");
+                    System.out.println("Enter the wrong input");
             }
         }
+    }
+    public static void main(String[] args) {
+        System.out.println("Welcome To Address Book Program");
+        Scanner Scan=new Scanner(System.in);
+
+        try {
+            InputStream inputStream = new FileInputStream("C:\\Users\\91907\\IdeaProjects\\EmployeeWageComputation\\src\\com\\company1\\Day27_EmployeePayrollService\\resource\\welcome.txt");
+            int byteData = inputStream.read();
+            if(byteData!=-1){
+                System.out.println(byteData);
+            }
+        } catch (IOException e2) {
+            e2.printStackTrace();
+        }
+
+
+        File file = new File("C:\\Users\\91907\\IdeaProjects\\EmployeeWageComputation\\src\\com\\company1\\Day27_EmployeePayrollService\\resource\\AddressBook.txt");
+        try {
+            boolean isFileCreated = file.createNewFile();
+            if (isFileCreated) {
+                System.out.println("File Created successfully!!1");
+            } else {
+                System.out.println("Something went wrong or file already exist");
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        AddressBookMain addressBookMain = new AddressBookMain();
+        addressBookMain.choose();
     }
 }
